@@ -18,7 +18,6 @@ describe('UserListComponent', () => {
 
     fixture = TestBed.createComponent(UserListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
 
     userService = TestBed.inject(UserService);
     userServiceSpy = spyOn(userService, 'getUsers').and.returnValue(of([
@@ -30,4 +29,9 @@ describe('UserListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should retrieve users from the UserService from OnInit', () => {
+    fixture.detectChanges();
+    expect(userServiceSpy).toHaveBeenCalled();
+  })
 });
